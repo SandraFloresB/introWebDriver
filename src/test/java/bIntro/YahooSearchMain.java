@@ -1,7 +1,6 @@
-package intro;
+package bIntro;
 
 import java.util.ArrayList;
-import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.By;
@@ -16,17 +15,18 @@ public class YahooSearchMain {
 	public static void main(String[] args) {
 		//INICIALIZACION DE SYSTEM.SETPROPERTY()
 	    WebDriver driver;
-		driver = new ChromeDriver();
-		driver.manage().timeouts().implicitlyWait(5,  TimeUnit.SECONDS);
-		driver.get("http://www.yahoo.com");
-		WebElement searchBox = driver.findElement(By.id("uh-search-box"));
-		WebElement searchButton = driver.findElement(By.id("uh-search-button"));
-		
+		driver = new ChromeDriver();  //arranca el navegador, obvio Chrome
+		driver.manage().timeouts().implicitlyWait(30,  TimeUnit.SECONDS); //configura las esperas implicitas hasta 30 segundos
+		driver.get("http://www.yahoo.com"); //navega a la url que le indiquemos
+		WebElement searchBox = driver.findElement(By.id("header-search-input"));
+		WebElement searchButton = driver.findElement(By.id("header-desktop-search-button"));
+
 		searchBox.clear();
 		searchBox.sendKeys("Selenium");
 		searchButton.click();
 		
-		WebElement seleniumLink = driver.findElement(By.linkText("SeleniumHQ Browser Automation"));
+
+		WebElement seleniumLink = driver.findElement(By.xpath("//h3[.='Selenium' and ./following-sibling::div[contains(.,'selenium.dev')] ] /a"));
 		seleniumLink.click();
 		
 		ArrayList<String> windowIds = new ArrayList<String>(driver.getWindowHandles());
@@ -39,8 +39,8 @@ public class YahooSearchMain {
 		WebElement downloadLink = driver.findElement(By.linkText("Downloads"));
 		downloadLink.click();
 		
-		driver.close(); //cierra solo un tab o ventana
-		//driver.quit(); //cierra todo el browser, todas las ventanas
+		driver.quit();
+
 
 	}
 

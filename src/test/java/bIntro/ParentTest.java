@@ -1,4 +1,4 @@
-package intro;
+package bIntro;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
@@ -9,7 +9,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 
 public class ParentTest {
 	static WebDriver driver;
-	static By searchBoxLocator = By.id("navbar-query");
+	static By searchBoxLocator = By.name("q");
 	static By searchButtonLocator = By.id("navbar-submit-button");
 
 	public static void setUp() {
